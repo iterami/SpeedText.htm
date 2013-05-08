@@ -2,16 +2,16 @@ function clicked(){
     get('score').innerHTML=parseInt(get('score').innerHTML)+1;
     generate()
 }
-function centisecond(){
+function clear(){
+    /*Remove all target links from text*/
+    get('text').innerHTML=get('text').innerHTML.replace('<a onclick="clicked()">','').replace('</a>','')
+}
+function decisecond(){
     if(parseFloat(get('time-remaining').innerHTML)<=0){
         stop()
     }else{
         get('time-remaining').innerHTML=(parseFloat(get('time-remaining').innerHTML)-.1).toFixed(1)
     }
-}
-function clear(){
-    /*Remove all target links from text*/
-    get('text').innerHTML=get('text').innerHTML.replace('<a onclick="clicked()">','').replace('</a>','')
 }
 function generate(){
     clear();
@@ -59,7 +59,7 @@ function start(){
     get('time-remaining').innerHTML=30;
     get('start_button').value='End (ESC)';
     generate();
-    h=setInterval('centisecond()',100)
+    h=setInterval('decisecond()',100)
 }
 function stop(){
     clearInterval(h);
