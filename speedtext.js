@@ -52,7 +52,8 @@ function settings(){
 	get('settings-button').value = ['-','+'][i]
 }
 function start(){
-    get('link-length').disabled = get('reset-button').disabled = 1;
+    get('link-length').disabled = 1;
+    get('reset-button').disabled = 1;
     get('start_button').onclick = function(){stop()};
 
     save();
@@ -69,20 +70,21 @@ function stop(){
     clear();
     get('start_button').value = 'Start (H)';
     get('start_button').onclick = function(){start()};
-    get('link-length').disabled = get('reset-button').disabled = 0
+    get('link-length').disabled = 0;
+    get('reset-button').disabled = 0
 }
 
-var h=0;
-var i=1;
-var ls=window.localStorage;
+var h = 0;
+var i = 1;
+var ls = window.localStorage;
 
 do{
     get(['audio-volume','link-length'][i]).value = ls.getItem('speedtext'+i)===null ? [1,5][i] : parseFloat(ls.getItem('speedtext'+i))
 }while(i--);
 
 window.onkeydown = function(e){
-    i = window.event?event:e;
-    i = i.charCode?i.charCode:i.keyCode;
+    i = window.event ? event : e;
+    i = i.charCode ? i.charCode : i.keyCode;
     if(i===27){/*ESC*/
         stop()
     }else if(i===72){/*H*/
