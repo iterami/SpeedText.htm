@@ -1,5 +1,5 @@
 function clicked(){
-    get('score').innerHTML = parseInt(get('score').innerHTML)+1;
+    get('score').innerHTML = parseInt(get('score').innerHTML) + 1;
     generate()
 }
 function clear(){
@@ -7,10 +7,10 @@ function clear(){
     get('text').innerHTML = get('text').innerHTML.replace('<a onclick="clicked()">','').replace('</a>','')
 }
 function decisecond(){
-    if(parseFloat(get('time-remaining').innerHTML)<=0){
+    if(parseFloat(get('time-remaining').innerHTML) <= 0){
         stop()
     }else{
-        get('time-remaining').innerHTML = (parseFloat(get('time-remaining').innerHTML)-.1).toFixed(1)
+        get('time-remaining').innerHTML = (parseFloat(get('time-remaining').innerHTML) - .1).toFixed(1)
     }
 }
 function generate(){
@@ -19,11 +19,11 @@ function generate(){
 
     /*Generate a range of link-length that doesn't overwrite any HTML*/
     do{
-        i = Math.floor(Math.random()*(get('text').innerHTML.length-j))
-    }while(get('text').innerHTML.substr(i,j).indexOf("<")!==-1 || get('text').innerHTML.substr(i,j).indexOf(">")!=-1);
+        i = Math.floor(Math.random() * (get('text').innerHTML.length - j))
+    }while(get('text').innerHTML.substr(i,j).indexOf("<") !== -1 || get('text').innerHTML.substr(i,j).indexOf(">") != -1);
 
     /*Replace the text with the new target link in it*/
-    get('text').innerHTML = get('text').innerHTML.substr(0,i)+'<a onclick="clicked()">'+get('text').innerHTML.substr(i,j)+'</a>'+get('text').innerHTML.substr(i+j,get('text').innerHTML.length-i)
+    get('text').innerHTML = get('text').innerHTML.substr(0,i) + '<a onclick="clicked()">' + get('text').innerHTML.substr(i,j) + '</a>' + get('text').innerHTML.substr(i + j,get('text').innerHTML.length - i)
 }
 function get(i){
     return document.getElementById(i)
@@ -38,16 +38,16 @@ function reset(){
 function save(){
     i = 1;
     do{
-        if(get(['audio-volume','link-length'][i]).value===[1,5][i] || get(['audio-volume','link-length'][i]).value<[0,1][i]){
-            ls.removeItem('speedtext'+i);
+        if(get(['audio-volume','link-length'][i]).value === [1,5][i] || get(['audio-volume','link-length'][i]).value < [0,1][i]){
+            ls.removeItem('speedtext' + i);
             get(['audio-volume','link-length'][i]).value = [1,5][i]
         }else{
-            ls.setItem('speedtext'+i,parseFloat(get(['audio-volume','link-length'][i]).value))
+            ls.setItem('speedtext' + i,parseFloat(get(['audio-volume','link-length'][i]).value))
         }
     }while(i--)
 }
 function settings(){
-	i = get('settings-button').value=='-' ? 1 : 0;
+	i = get('settings-button').value === '-' ? 1 : 0;
 	get('settings').style.display = ['inline-block','none'][i];
 	get('settings-button').value = ['-','+'][i]
 }
@@ -79,15 +79,15 @@ var i = 1;
 var ls = window.localStorage;
 
 do{
-    get(['audio-volume','link-length'][i]).value = ls.getItem('speedtext'+i)===null ? [1,5][i] : parseFloat(ls.getItem('speedtext'+i))
+    get(['audio-volume','link-length'][i]).value = ls.getItem('speedtext' + i) === null ? [1,5][i] : parseFloat(ls.getItem('speedtext' + i))
 }while(i--);
 
 window.onkeydown = function(e){
     i = window.event ? event : e;
     i = i.charCode ? i.charCode : i.keyCode;
-    if(i===27){/*ESC*/
+    if(i === 27){/*ESC*/
         stop()
-    }else if(i===72){/*H*/
+    }else if(i === 72){/*H*/
         stop();
         start()
     }
