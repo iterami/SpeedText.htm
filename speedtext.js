@@ -2,10 +2,12 @@ function clicked(){
     get('score').innerHTML = parseInt(get('score').innerHTML) + 1;
     generate()
 }
+
 function clear(){
     /*Remove all target links from text*/
     get('text').innerHTML = get('text').innerHTML.replace('<a onclick="clicked()">','').replace('</a>','')
 }
+
 function decisecond(){
     if(parseFloat(get('time-remaining').innerHTML) <= 0){
         stop()
@@ -13,6 +15,7 @@ function decisecond(){
         get('time-remaining').innerHTML = (parseFloat(get('time-remaining').innerHTML) - .1).toFixed(1)
     }
 }
+
 function generate(){
     clear();
     j = parseInt(get('link-length').value);
@@ -25,9 +28,11 @@ function generate(){
     /*Replace the text with the new target link in it*/
     get('text').innerHTML = get('text').innerHTML.substr(0,i) + '<a onclick="clicked()">' + get('text').innerHTML.substr(i,j) + '</a>' + get('text').innerHTML.substr(i + j,get('text').innerHTML.length - i)
 }
+
 function get(i){
     return document.getElementById(i)
 }
+
 function reset(){
     if(confirm('Reset settings?')){
         get('link-length').value = 5;
@@ -35,6 +40,7 @@ function reset(){
         save()
     }
 }
+
 function save(){
     i = 1;
     do{
@@ -46,11 +52,13 @@ function save(){
         }
     }while(i--)
 }
+
 function settings(){
 	i = get('settings-button').value === '-' ? 1 : 0;
 	get('settings').style.display = ['inline-block','none'][i];
 	get('settings-button').value = ['-','+'][i]
 }
+
 function start(){
     get('link-length').disabled = 1;
     get('reset-button').disabled = 1;
@@ -63,10 +71,11 @@ function start(){
     get('start_button').value = 'End (ESC)';
     generate();
 
-    h=setInterval('decisecond()',100)
+    interval = setInterval('decisecond()',100)
 }
+
 function stop(){
-    clearInterval(h);
+    clearInterval(interval);
     clear();
     get('start_button').value = 'Start (H)';
     get('start_button').onclick = function(){start()};
@@ -74,8 +83,8 @@ function stop(){
     get('reset-button').disabled = 0
 }
 
-var h = 0;
 var i = 1;
+var interval = 0;
 var ls = window.localStorage;
 
 do{
