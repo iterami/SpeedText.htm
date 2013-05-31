@@ -26,7 +26,9 @@ function generate(){
     }while(get('text').innerHTML.substr(i,j).indexOf("<") !== -1 || get('text').innerHTML.substr(i,j).indexOf(">") != -1);
 
     /*Replace the text with the new target link in it*/
-    get('text').innerHTML = get('text').innerHTML.substr(0,i) + '<a onclick="clicked()">' + get('text').innerHTML.substr(i,j) + '</a>' + get('text').innerHTML.substr(i + j,get('text').innerHTML.length - i)
+    get('text').innerHTML = get('text').innerHTML.substr(0,i)
+        + '<a onclick="clicked()">' + get('text').innerHTML.substr(i,j) + '</a>'
+        + get('text').innerHTML.substr(i + j,get('text').innerHTML.length - i)
 }
 
 function get(i){
@@ -42,15 +44,18 @@ function reset(){
 }
 
 function save(){
-    i = 1;
-    do{
-        if(get(['audio-volume','link-length'][i]).value === [1,5][i] || get(['audio-volume','link-length'][i]).value < [0,1][i]){
-            ls.removeItem('speedtext' + i);
-            get(['audio-volume','link-length'][i]).value = [1,5][i]
-        }else{
-            ls.setItem('speedtext' + i,parseFloat(get(['audio-volume','link-length'][i]).value))
-        }
-    }while(i--)
+    if(get('audio-volume').value === 1 || get('audio-volume').value < 0){
+        ls.removeItem('speedtext0');
+        get('audio-volume').value = 1
+    }else{
+        ls.setItem('speedtext0',parseFloat(get('audio-volume').value))
+    }
+    if(get('link-length').value === 5 || get('link-length').value < 1){
+        ls.removeItem('speedtext1');
+        get('link-length').value = 5
+    }else{
+        ls.setItem('speedtext1',parseFloat(get('link-length').value))
+    }
 }
 
 function settings(){
@@ -83,17 +88,17 @@ function stop(){
     get('reset-button').disabled = 0
 }
 
-var i = 1;
+var i = 0;
 var interval = 0;
 var ls = window.localStorage;
 
-do{
-    get(['audio-volume','link-length'][i]).value = ls.getItem('speedtext' + i) === null ? [1,5][i] : parseFloat(ls.getItem('speedtext' + i))
-}while(i--);
+get('audio-volume').value = ls.getItem('speedtext0') === null ? 1 : parseFloat(ls.getItem('speedtext0'));
+get('link-length').value = ls.getItem('speedtext1') === null ? 5 : parseFloat(ls.getItem('speedtext1'));
 
 window.onkeydown = function(e){
     i = window.event ? event : e;
     i = i.charCode ? i.charCode : i.keyCode;
+
     if(i === 27){/*ESC*/
         stop()
     }else if(i === 72){/*H*/
