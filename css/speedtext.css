@@ -1,11 +1,11 @@
 a{
-    color:#00f;
-    cursor:pointer;
-    text-decoration:underline
+    color: #00f;
+    cursor: pointer;
+    text-decoration: underline;
 }
 div{
-    display:inline-block
+    display: inline-block;
 }
 input[type=button]{
-    cursor:pointer
+    cursor: pointer;
 }
