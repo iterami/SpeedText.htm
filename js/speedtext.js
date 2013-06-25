@@ -50,7 +50,7 @@ function save(){
         get('audio-volume').value = 1;
 
     }else{
-        ls.setItem('speedtext-0',parseFloat(get('audio-volume').value))
+        ls.setItem('speedtext-0', parseFloat(get('audio-volume').value));
     }
 
     if(get('link-length').value === 5 || get('link-length').value < 1){
@@ -93,7 +93,7 @@ function stop(){
     clear();
     get('start_button').value = 'Start (H)';
     get('start_button').onclick = function(){
-        start()
+        start();
     };
     get('link-length').disabled = 0;
     get('reset-button').disabled = 0;
@@ -111,7 +111,7 @@ window.onkeydown = function(e){
     i = i.charCode ? i.charCode : i.keyCode;
 
     if(i === 27){/* ESC */
-        stop()l
+        stop();
 
     }else if(i === 72){/* H */
         stop();
