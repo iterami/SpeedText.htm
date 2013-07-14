@@ -4,7 +4,7 @@ function clicked(){
 }
 
 function clear(){
-    /* Remove all target links from text */
+    // Remove all target links from text
     get('text').innerHTML = get('text').innerHTML.replace('<a onclick="clicked()">', '').replace('</a>', '');
 }
 
@@ -21,12 +21,12 @@ function generate(){
     clear();
     j = parseInt(get('link-length').value);
 
-    /* Generate a range of link-length that doesn't overwrite any HTML */
+    // Generate a range of link-length that doesn't overwrite any HTML
     do{
         i = Math.floor(Math.random() * (get('text').innerHTML.length - j));
     }while(get('text').innerHTML.substr(i, j).indexOf("<") !== -1 || get('text').innerHTML.substr(i, j).indexOf(">") != -1);
 
-    /* Replace the text with the new target link in it */
+    // Replace the text with the new target link in it
     get('text').innerHTML = get('text').innerHTML.substr(0,i)
         + '<a onclick="clicked()">' + get('text').innerHTML.substr(i, j) + '</a>'
         + get('text').innerHTML.substr(i + j, get('text').innerHTML.length - i);
@@ -104,16 +104,16 @@ var interval = 0;
 var ls = window.localStorage;
 
 get('audio-volume').value = ls.getItem('speedtext-0') === null ? 1 : parseFloat(ls.getItem('speedtext-0'));
-get('link-length').value = ls.getItem('speedtext-1') === null ? 5 : parseFloat(ls.getItem('speedtext-1'));
+get('link-length').value  = ls.getItem('speedtext-1') === null ? 5 : parseFloat(ls.getItem('speedtext-1'));
 
 window.onkeydown = function(e){
     i = window.event ? event : e;
     i = i.charCode ? i.charCode : i.keyCode;
 
-    if(i === 27){/* ESC */
+    if(i === 27){// ESC
         stop();
 
-    }else if(i === 72){/* H */
+    }else if(i === 72){// H
         stop();
         start();
     }
