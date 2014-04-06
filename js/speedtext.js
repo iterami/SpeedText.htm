@@ -80,7 +80,7 @@ function start(){
 
     document.getElementById('score').innerHTML = 0;
     document.getElementById('time-remaining').innerHTML = 30;
-    document.getElementById('start_button').value = 'End (ESC)';
+    document.getElementById('start_button').value = 'End [ESC]';
     generate();
 
     interval = setInterval('decisecond()', 100);
@@ -89,7 +89,7 @@ function start(){
 function stop(){
     clearInterval(interval);
     clear_links();
-    document.getElementById('start_button').value = 'Start (H)';
+    document.getElementById('start_button').value = 'Start [H]';
     document.getElementById('start_button').onclick = function(){
         start();
     };
