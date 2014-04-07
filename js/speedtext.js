@@ -38,6 +38,10 @@ function reset(){
     if(confirm('Reset settings?')){
         document.getElementById('audio-volume').value = 1;
         document.getElementById('link-length').value = 5;
+        document.getElementById('start-key').value = 'H';
+
+        document.getElementById('start_button').value = 'Start [H]';
+
         save();
     }
 }
@@ -61,6 +65,16 @@ function save(){
           parseFloat(document.getElementById('link-length').value)
         );
     }
+
+    if(document.getElementById('start-key').value === 'H'){
+        window.localStorage.removeItem('speedtext-2');
+
+    }else{
+        window.localStorage.setItem(
+          'speedtext-2',
+          document.getElementById('start-key').value
+        );
+    }
 }
 
 function settings(){
@@ -72,6 +86,7 @@ function settings(){
 function start(){
     document.getElementById('link-length').disabled = 1;
     document.getElementById('reset-button').disabled = 1;
+    document.getElementById('start-key').disabled = 'H';
     document.getElementById('start_button').onclick = function(){
         stop();
     };
@@ -89,12 +104,13 @@ function start(){
 function stop(){
     clearInterval(interval);
     clear_links();
-    document.getElementById('start_button').value = 'Start [H]';
+    document.getElementById('start_button').value = 'Start [' + document.getElementById('start-key').value + ']';
     document.getElementById('start_button').onclick = function(){
         start();
     };
     document.getElementById('link-length').disabled = 0;
     document.getElementById('reset-button').disabled = 0;
+    document.getElementById('start-key').disabled = 0;
 }
 
 var i = 0;
@@ -106,6 +122,11 @@ document.getElementById('audio-volume').value = window.localStorage.getItem('spe
 document.getElementById('link-length').value  = window.localStorage.getItem('speedtext-1') === null
   ? 5
   : parseFloat(window.localStorage.getItem('speedtext-1'));
+document.getElementById('start-key').value  = window.localStorage.getItem('speedtext-2') === null
+  ? 'H'
+  : window.localStorage.getItem('speedtext-2');
+
+stop();
 
 window.onkeydown = function(e){
     i = window.event ? event : e;
@@ -114,7 +135,7 @@ window.onkeydown = function(e){
     if(i === 27){// ESC
         stop();
 
-    }else if(i === 72){// H
+    }else if(String.fromCharCode(i) === document.getElementById('start-key').value){// H
         stop();
         start();
     }

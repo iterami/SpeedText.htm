@@ -7,14 +7,15 @@
     <b>Speedtext</b><br>
     Score: <b id=score>0</b><br>
     Time: <b id=time-remaining>30</b> out of <b>30</b><br>
-    <input id=start_button onclick=start() style=font-size:125% type=button value="Start [H]">
+    <input id=start_button onclick=start() type=button value="Start [H]">
     <input id=settings-button onclick=settings() type=button value=->
 </div>
 
-<div id=settings style=padding-left:50px>
+<div id=settings>
     <input id=reset-button onclick=reset() type=button value=Reset><br>
     <input id=audio-volume max=1 min=0 step=.01 type=range value=1>Audio<br>
-    <input id=link-length maxlength=2 style=width:75px value=5>Link Length
+    <input id=link-length maxlength=2 value=5>Link Length<br>
+    <input id=start-key maxlength=1 value=H>Start
 </div>
 
 <hr>

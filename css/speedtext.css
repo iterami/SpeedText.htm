@@ -6,6 +6,16 @@ a{
 div{
     display: inline-block;
 }
+input{
+    width: 75px;
+}
 input[type=button]{
     cursor: pointer;
+    width: auto;
+}
+#settings{
+    padding-left: 50px;
+}
+#start_button{
+    font-size: 125%;
 }
