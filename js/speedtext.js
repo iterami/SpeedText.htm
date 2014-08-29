@@ -152,4 +152,4 @@ window.onkeydown = function(e){
         stop();
         start();
     }
-}
+};
