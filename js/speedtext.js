@@ -49,34 +49,34 @@ function reset(){
 function save(){
     if(document.getElementById('audio-volume').value === 1
       || document.getElementById('audio-volume').value < 0){
-        window.localStorage.removeItem('speedtext-0');
+        window.localStorage.removeItem('SpeedText.htm-audio-volume');
         document.getElementById('audio-volume').value = 1;
 
     }else{
         window.localStorage.setItem(
-          'speedtext-0',
+          'SpeedText.htm-audio-volume',
           parseFloat(document.getElementById('audio-volume').value)
         );
     }
 
     if(document.getElementById('link-length').value === 5
       || document.getElementById('link-length').value < 1){
-        window.localStorage.removeItem('speedtext-1');
+        window.localStorage.removeItem('SpeedText.htm-link-length');
         document.getElementById('link-length').value = 5;
 
     }else{
         window.localStorage.setItem(
-          'speedtext-1',
+          'SpeedText.htm-link-length',
           parseFloat(document.getElementById('link-length').value)
         );
     }
 
     if(document.getElementById('start-key').value === 'H'){
-        window.localStorage.removeItem('speedtext-2');
+        window.localStorage.removeItem('SpeedText.htm-start-key');
 
     }else{
         window.localStorage.setItem(
-          'speedtext-2',
+          'SpeedText.htm-start-key',
           document.getElementById('start-key').value
         );
     }
@@ -129,15 +129,15 @@ function stop(){
 
 var interval = 0;
 
-document.getElementById('audio-volume').value = window.localStorage.getItem('speedtext-0') === null
+document.getElementById('audio-volume').value = window.localStorage.getItem('SpeedText.htm-audio-volume') === null
   ? 1
-  : parseFloat(window.localStorage.getItem('speedtext-0'));
-document.getElementById('link-length').value  = window.localStorage.getItem('speedtext-1') === null
+  : parseFloat(window.localStorage.getItem('SpeedText.htm-audio-volume'));
+document.getElementById('link-length').value  = window.localStorage.getItem('SpeedText.htm-link-length') === null
   ? 5
-  : parseFloat(window.localStorage.getItem('speedtext-1'));
-document.getElementById('start-key').value  = window.localStorage.getItem('speedtext-2') === null
+  : parseFloat(window.localStorage.getItem('SpeedText.htm-link-length'));
+document.getElementById('start-key').value  = window.localStorage.getItem('SpeedText.htm-start-key') === null
   ? 'H'
-  : window.localStorage.getItem('speedtext-2');
+  : window.localStorage.getItem('SpeedText.htm-start-key');
 
 stop();
 
