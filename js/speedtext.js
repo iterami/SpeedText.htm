@@ -42,7 +42,7 @@ function reset(){
 
     document.getElementById('audio-volume').value = 1;
     document.getElementById('link-length').value = 5;
-    document.getElementById('start_button').value = 'Start [H]';
+    document.getElementById('start-button').value = 'Start [H]';
     document.getElementById('start-key').value = 'H';
 
     save();
@@ -99,17 +99,17 @@ function settings(){
 }
 
 function start(){
-    document.getElementById('link-length').disabled = 1;
-    document.getElementById('reset-button').disabled = 1;
-    document.getElementById('start_button').onclick = function(){
+    document.getElementById('link-length').disabled = true;
+    document.getElementById('reset-button').disabled = true;
+    document.getElementById('start-button').onclick = function(){
         stop();
     };
-    document.getElementById('start-key').disabled = 'H';
+    document.getElementById('start-key').disabled = true;
 
     save();
 
     document.getElementById('score').innerHTML = 0;
-    document.getElementById('start_button').value = 'End [ESC]';
+    document.getElementById('start-button').value = 'End [ESC]';
     document.getElementById('time-remaining').innerHTML = 30;
     generate();
 
@@ -122,14 +122,14 @@ function start(){
 function stop(){
     clearInterval(interval);
     clear_links();
-    document.getElementById('link-length').disabled = 0;
-    document.getElementById('reset-button').disabled = 0;
-    document.getElementById('start_button').onclick = function(){
+    document.getElementById('link-length').disabled = false;
+    document.getElementById('reset-button').disabled = false;
+    document.getElementById('start-button').onclick = function(){
         start();
     };
-    document.getElementById('start_button').value =
+    document.getElementById('start-button').value =
       'Start [' + document.getElementById('start-key').value + ']';
-    document.getElementById('start-key').disabled = 0;
+    document.getElementById('start-key').disabled = false;
 }
 
 var interval = 0;
