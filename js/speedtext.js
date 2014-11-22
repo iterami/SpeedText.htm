@@ -147,8 +147,7 @@ document.getElementById('start-key').value  = window.localStorage.getItem('Speed
 stop();
 
 window.onkeydown = function(e){
-    var key = window.event ? event : e;
-    key = key.charCode ? key.charCode : key.keyCode;
+    var key = e.keyCode || e.which;
 
     // ESC: stop current game.
     if(key === 27){
