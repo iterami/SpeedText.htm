@@ -113,14 +113,14 @@ function start(){
     document.getElementById('time-remaining').innerHTML = 30;
     generate();
 
-    interval = setInterval(
+    interval = window.setInterval(
       'decisecond()',
       100
     );
 }
 
 function stop(){
-    clearInterval(interval);
+    window.clearInterval(interval);
     clear_links();
     document.getElementById('link-length').disabled = false;
     document.getElementById('reset-button').disabled = false;
