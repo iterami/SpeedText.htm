@@ -146,15 +146,12 @@ window.onkeydown = function(e){
 };
 
 window.onload = function(e){
-    document.getElementById('audio-volume').value = window.localStorage.getItem('SpeedText.htm-audio-volume') === null
-      ? 1
-      : parseFloat(window.localStorage.getItem('SpeedText.htm-audio-volume'));
-    document.getElementById('link-length').value  = window.localStorage.getItem('SpeedText.htm-link-length') === null
-      ? 5
-      : parseFloat(window.localStorage.getItem('SpeedText.htm-link-length'));
-    document.getElementById('start-key').value  = window.localStorage.getItem('SpeedText.htm-start-key') === null
-      ? 'H'
-      : window.localStorage.getItem('SpeedText.htm-start-key');
+    document.getElementById('audio-volume').value =
+      parseFloat(window.localStorage.getItem('SpeedText.htm-audio-volume')) || 1;
+    document.getElementById('link-length').value =
+      parseFloat(window.localStorage.getItem('SpeedText.htm-link-length')) || 5;
+    document.getElementById('start-key').value =
+      window.localStorage.getItem('SpeedText.htm-start-key') || 'H';
 
     stop();
 };
