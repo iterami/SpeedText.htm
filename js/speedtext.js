@@ -85,14 +85,18 @@ function save(){
     }
 }
 
-function settings(){
-    if(document.getElementById('settings-button').value === '-'){
-        document.getElementById('settings').style.display = 'none';
-        document.getElementById('settings-button').value = '+';
+function settings_toggle(state){
+    state = state == undefined
+      ? document.getElementById('settings-button').value === '+'
+      : state;
 
-    }else{
+    if(state){
         document.getElementById('settings').style.display = 'inline-block';
         document.getElementById('settings-button').value = '-';
+
+    }else{
+        document.getElementById('settings').style.display = 'none';
+        document.getElementById('settings-button').value = '+';
     }
 }
 
@@ -142,6 +146,14 @@ window.onkeydown = function(e){
     }else if(String.fromCharCode(key) === document.getElementById('start-key').value){
         stop();
         start();
+
+    // +: show settings.
+    }else if(key === 187){
+        settings_toggle(true);
+
+    // -: hide settings.
+    }else if(key === 189){
+        settings_toggle(false);
     }
 };
 
