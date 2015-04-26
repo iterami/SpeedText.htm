@@ -26,6 +26,7 @@ input[type=button]{
     width: auto;
 }
 #settings{
+    display: none;
     padding-left: 50px;
 }
 #start_button{
