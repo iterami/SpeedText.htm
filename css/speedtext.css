@@ -23,7 +23,11 @@ input{
     width: 75px;
 }
 input[type=button]{
+    cursor: pointer;
     width: auto;
+}
+input[type=range]{
+    cursor: pointer;
 }
 #settings{
     display: none;
