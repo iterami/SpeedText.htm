@@ -1,3 +1,5 @@
+'use strict';
+
 function clicked(){
     document.getElementById('score').innerHTML = parseInt(document.getElementById('score').innerHTML) + 1;
     generate();
