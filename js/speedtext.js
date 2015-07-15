@@ -88,7 +88,7 @@ function save(){
 }
 
 function settings_toggle(state){
-    state = state == void(0)
+    state = state == void 0
       ? document.getElementById('settings-button').value === '+'
       : state;
 
