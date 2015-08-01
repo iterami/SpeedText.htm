@@ -23,18 +23,19 @@ function decisecond(){
 
 function generate(){
     clear_links();
-    j = parseInt(document.getElementById('link-length').value);
+    var linklength = parseInt(document.getElementById('link-length').value);
+    var range = 0;
 
     // Generate a range of link-length that doesn't overwrite any HTML.
     do{
-        i = Math.floor(Math.random() * (document.getElementById('text').innerHTML.length - j));
-    }while(document.getElementById('text').innerHTML.substr(i, j).indexOf("<") !== -1
-      || document.getElementById('text').innerHTML.substr(i, j).indexOf(">") != -1);
+        range = Math.floor(Math.random() * (document.getElementById('text').innerHTML.length - linklength));
+    }while(document.getElementById('text').innerHTML.substr(range, linklength).indexOf("<") !== -1
+      || document.getElementById('text').innerHTML.substr(range, linklength).indexOf(">") != -1);
 
     // Replace the text with the new target link in it.
-    document.getElementById('text').innerHTML = document.getElementById('text').innerHTML.substr(0, i)
-      + '<a onclick="clicked()">' + document.getElementById('text').innerHTML.substr(i, j) + '</a>'
-      + document.getElementById('text').innerHTML.substr(i + j, document.getElementById('text').innerHTML.length - i);
+    document.getElementById('text').innerHTML = document.getElementById('text').innerHTML.substr(0, range)
+      + '<a onclick="clicked()">' + document.getElementById('text').innerHTML.substr(range, linklength) + '</a>'
+      + document.getElementById('text').innerHTML.substr(range + linklength, document.getElementById('text').innerHTML.length - range);
 }
 
 function reset(){
@@ -103,12 +104,9 @@ function settings_toggle(state){
 }
 
 function start(){
-    document.getElementById('link-length').disabled = true;
-    document.getElementById('reset-button').disabled = true;
     document.getElementById('start-button').onclick = function(){
         stop();
     };
-    document.getElementById('start-key').disabled = true;
 
     save();
 
@@ -126,14 +124,11 @@ function start(){
 function stop(){
     window.clearInterval(interval);
     clear_links();
-    document.getElementById('link-length').disabled = false;
-    document.getElementById('reset-button').disabled = false;
     document.getElementById('start-button').onclick = function(){
         start();
     };
     document.getElementById('start-button').value =
       'Start [' + document.getElementById('start-key').value + ']';
-    document.getElementById('start-key').disabled = false;
 }
 
 var interval = 0;
