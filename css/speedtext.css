@@ -33,6 +33,6 @@ input[type=range]{
     display: none;
     padding-left: 50px;
 }
-#start_button{
+#start-button{
     font-size: 125%;
 }
