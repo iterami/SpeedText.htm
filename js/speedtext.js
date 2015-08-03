@@ -104,9 +104,7 @@ function settings_toggle(state){
 }
 
 function start(){
-    document.getElementById('start-button').onclick = function(){
-        stop();
-    };
+    document.getElementById('start-button').onclick = stop;
 
     save();
 
@@ -124,9 +122,7 @@ function start(){
 function stop(){
     window.clearInterval(interval);
     clear_links();
-    document.getElementById('start-button').onclick = function(){
-        start();
-    };
+    document.getElementById('start-button').onclick = start;
     document.getElementById('start-button').value =
       'Start [' + document.getElementById('start-key').value + ']';
 }
