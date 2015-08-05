@@ -53,7 +53,7 @@ function reset(){
 
 // Save settings into window.localStorage if they differ from default.
 function save(){
-    if(document.getElementById('audio-volume').value === 1
+    if(document.getElementById('audio-volume').value == 1
       || document.getElementById('audio-volume').value < 0){
         window.localStorage.removeItem('SpeedText.htm-audio-volume');
         document.getElementById('audio-volume').value = 1;
@@ -65,7 +65,7 @@ function save(){
         );
     }
 
-    if(document.getElementById('link-length').value === 5
+    if(document.getElementById('link-length').value == 5
       || document.getElementById('link-length').value < 1){
         window.localStorage.removeItem('SpeedText.htm-link-length');
         document.getElementById('link-length').value = 5;
