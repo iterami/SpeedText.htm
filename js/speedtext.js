@@ -12,12 +12,12 @@ function clear_links(){
 }
 
 function decisecond(){
-    if(parseFloat(document.getElementById('time-remaining').innerHTML) <= 0){
+    var time_remaining = parseFloat(document.getElementById('time-remaining').innerHTML);
+    if(time_remaining <= 0){
         stop();
 
     }else{
-        document.getElementById('time-remaining').innerHTML =
-          (parseFloat(document.getElementById('time-remaining').innerHTML) - .1).toFixed(1);
+        document.getElementById('time-remaining').innerHTML = (time_remaining - .1).toFixed(1);
     }
 }
 
@@ -25,17 +25,18 @@ function generate(){
     clear_links();
     var linklength = parseInt(document.getElementById('link-length').value);
     var range = 0;
+    var text = document.getElementById('text').innerHTML;
 
     // Generate a range of link-length that doesn't overwrite any HTML.
     do{
-        range = Math.floor(Math.random() * (document.getElementById('text').innerHTML.length - linklength));
-    }while(document.getElementById('text').innerHTML.substr(range, linklength).indexOf("<") !== -1
-      || document.getElementById('text').innerHTML.substr(range, linklength).indexOf(">") != -1);
+        range = Math.floor(Math.random() * (text.length - linklength));
+    }while(text.substr(range, linklength).indexOf('<') !== -1
+      || text.substr(range, linklength).indexOf('>') != -1);
 
     // Replace the text with the new target link in it.
-    document.getElementById('text').innerHTML = document.getElementById('text').innerHTML.substr(0, range)
-      + '<a onclick="clicked()">' + document.getElementById('text').innerHTML.substr(range, linklength) + '</a>'
-      + document.getElementById('text').innerHTML.substr(range + linklength, document.getElementById('text').innerHTML.length - range);
+    document.getElementById('text').innerHTML = text.substr(0, range)
+      + '<a onclick="clicked()">' + text.substr(range, linklength) + '</a>'
+      + text.substr(range + linklength, text.length - range);
 }
 
 function reset(){
@@ -53,37 +54,40 @@ function reset(){
 
 // Save settings into window.localStorage if they differ from default.
 function save(){
-    if(document.getElementById('audio-volume').value == 1
-      || document.getElementById('audio-volume').value < 0){
+    var audio_volume = document.getElementById('audio-volume').value;
+    if(audio_volume == 1
+      || audio_volume.value < 0){
         window.localStorage.removeItem('SpeedText.htm-audio-volume');
         document.getElementById('audio-volume').value = 1;
 
     }else{
         window.localStorage.setItem(
           'SpeedText.htm-audio-volume',
-          parseFloat(document.getElementById('audio-volume').value)
+          parseFloat(audio_volume)
         );
     }
 
-    if(document.getElementById('link-length').value == 5
-      || document.getElementById('link-length').value < 1){
+    var link_length = document.getElementById('link-length').value;
+    if(link_length == 5
+      || link_length < 1){
         window.localStorage.removeItem('SpeedText.htm-link-length');
         document.getElementById('link-length').value = 5;
 
     }else{
         window.localStorage.setItem(
           'SpeedText.htm-link-length',
-          parseFloat(document.getElementById('link-length').value)
+          parseFloat(link_length)
         );
     }
 
-    if(document.getElementById('start-key').value === 'H'){
+    var start_key = document.getElementById('start-key').value;
+    if(start_key === 'H'){
         window.localStorage.removeItem('SpeedText.htm-start-key');
 
     }else{
         window.localStorage.setItem(
           'SpeedText.htm-start-key',
-          document.getElementById('start-key').value
+          start_key
         );
     }
 }
