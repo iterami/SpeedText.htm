@@ -44,10 +44,15 @@ function reset(){
         return;
     }
 
-    document.getElementById('audio-volume').value = 1;
-    document.getElementById('link-length').value = 5;
-    document.getElementById('start-button').value = 'Start [H]';
-    document.getElementById('start-key').value = 'H';
+    var ids = {
+      'audio-volume': 1,
+      'link-length': 5,
+      'start-button': 'Start [H]',
+      'start-key': 'H',
+    };
+    for(var id in ids){
+        document.getElementById(id).value = ids[id];
+    }
 
     save();
 }
