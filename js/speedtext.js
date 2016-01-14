@@ -12,12 +12,12 @@ function clear_links(){
 }
 
 function decisecond(){
-    var time_remaining = parseFloat(document.getElementById('time-remaining').innerHTML);
-    if(time_remaining <= 0){
-        stop();
+    time = (time - .1).toFixed(1);
 
-    }else{
-        document.getElementById('time-remaining').innerHTML = (time_remaining - .1).toFixed(1);
+    document.getElementById('time').innerHTML = time;
+
+    if(time <= 0){
+        stop();
     }
 }
 
@@ -117,9 +117,11 @@ function start(){
 
     save();
 
+    time = 30;
+
     document.getElementById('score').innerHTML = 0;
     document.getElementById('start-button').value = 'End [ESC]';
-    document.getElementById('time-remaining').innerHTML = 30;
+    document.getElementById('time').innerHTML = time;
     generate();
 
     interval = window.setInterval(
@@ -137,6 +139,7 @@ function stop(){
 }
 
 var interval = 0;
+var time = 0;
 
 window.onkeydown = function(e){
     var key = e.keyCode || e.which;
