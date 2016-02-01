@@ -125,7 +125,7 @@ function start(){
     generate();
 
     interval = window.setInterval(
-      'decisecond()',
+      decisecond,
       100
     );
 }
