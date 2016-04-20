@@ -1,7 +1,10 @@
 'use strict';
 
 function clicked(){
-    document.getElementById('score').innerHTML = parseInt(document.getElementById('score').innerHTML) + 1;
+    document.getElementById('score').innerHTML = parseInt(
+      document.getElementById('score').innerHTML,
+      10
+    ) + 1;
     generate();
 }
 
@@ -23,7 +26,10 @@ function decisecond(){
 
 function generate(){
     clear_links();
-    var linklength = parseInt(document.getElementById('link-length').value);
+    var linklength = parseInt(
+      document.getElementById('link-length').value,
+      10
+    );
     var range = 0;
     var text = document.getElementById('text').innerHTML;
 
