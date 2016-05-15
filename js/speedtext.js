@@ -26,81 +26,19 @@ function decisecond(){
 
 function generate(){
     clear_links();
-    var linklength = parseInt(
-      document.getElementById('link-length').value,
-      10
-    );
     var range = 0;
     var text = document.getElementById('text').innerHTML;
 
     // Generate a range of link-length that doesn't overwrite any HTML.
     do{
-        range = Math.floor(Math.random() * (text.length - linklength));
-    }while(text.substr(range, linklength).indexOf('<') !== -1
-      || text.substr(range, linklength).indexOf('>') != -1);
+        range = Math.floor(Math.random() * (text.length - settings['link-length']));
+    }while(text.substr(range, settings['link-length']).indexOf('<') !== -1
+      || text.substr(range, settings['link-length']).indexOf('>') != -1);
 
     // Replace the text with the new target link in it.
     document.getElementById('text').innerHTML = text.substr(0, range)
-      + '<a onclick="clicked()">' + text.substr(range, linklength) + '</a>'
-      + text.substr(range + linklength, text.length - range);
-}
-
-function reset(){
-    if(!window.confirm('Reset settings?')){
-        return;
-    }
-
-    var ids = {
-      'audio-volume': 1,
-      'link-length': 5,
-      'start-button': 'Start [H]',
-      'start-key': 'H',
-    };
-    for(var id in ids){
-        document.getElementById(id).value = ids[id];
-    }
-
-    save();
-}
-
-// Save settings into window.localStorage if they differ from default.
-function save(){
-    var audio_volume = document.getElementById('audio-volume').value;
-    if(audio_volume == 1
-      || audio_volume.value < 0){
-        window.localStorage.removeItem('SpeedText.htm-audio-volume');
-        document.getElementById('audio-volume').value = 1;
-
-    }else{
-        window.localStorage.setItem(
-          'SpeedText.htm-audio-volume',
-          parseFloat(audio_volume)
-        );
-    }
-
-    var link_length = document.getElementById('link-length').value;
-    if(link_length == 5
-      || link_length < 1){
-        window.localStorage.removeItem('SpeedText.htm-link-length');
-        document.getElementById('link-length').value = 5;
-
-    }else{
-        window.localStorage.setItem(
-          'SpeedText.htm-link-length',
-          parseFloat(link_length)
-        );
-    }
-
-    var start_key = document.getElementById('start-key').value;
-    if(start_key === 'H'){
-        window.localStorage.removeItem('SpeedText.htm-start-key');
-
-    }else{
-        window.localStorage.setItem(
-          'SpeedText.htm-start-key',
-          start_key
-        );
-    }
+      + '<a onclick="clicked()">' + text.substr(range, settings['link-length']) + '</a>'
+      + text.substr(range + settings['link-length'], text.length - range);
 }
 
 function settings_toggle(state){
@@ -141,7 +79,7 @@ function stop(){
     clear_links();
     document.getElementById('start-button').onclick = start;
     document.getElementById('start-button').value =
-      'Start [' + document.getElementById('start-key').value + ']';
+      'Start [' + settings['start-key'] + ']';
 }
 
 var interval = 0;
@@ -154,7 +92,7 @@ window.onkeydown = function(e){
     if(key === 27){
         stop();
 
-    }else if(String.fromCharCode(key) === document.getElementById('start-key').value){
+    }else if(String.fromCharCode(key) === settings['start-key']){
         stop();
         start();
 
@@ -169,12 +107,20 @@ window.onkeydown = function(e){
 };
 
 window.onload = function(e){
-    document.getElementById('audio-volume').value =
-      parseFloat(window.localStorage.getItem('SpeedText.htm-audio-volume')) || 1;
-    document.getElementById('link-length').value =
-      parseFloat(window.localStorage.getItem('SpeedText.htm-link-length')) || 5;
-    document.getElementById('start-key').value =
-      window.localStorage.getItem('SpeedText.htm-start-key') || 'H';
+    init_settings(
+      'SpeedText.htm-',
+      {
+        'audio-volume': 1,
+        'link-length': 5,
+        'start-key': 'H',
+      }
+    );
+
+    document.getElementById('settings').innerHTML =
+      '<input id=audio-volume max=1 min=0 step=0.01 type=range value=' + settings['audio-volume'] + '>Audio<br>'
+        + '<input id=link-length maxlength=2 value=' + settings['link-length'] + '>Link Length<br>'
+        + '<input id=start-key maxlength=1 value=' + settings['start-key'] + '>Start<br>'
+        + '<input id=reset-button onclick=reset() type=button value=Reset>';
 
     stop();
 };
