@@ -117,10 +117,11 @@ window.onload = function(e){
     );
 
     document.getElementById('settings').innerHTML =
-      '<input id=audio-volume max=1 min=0 step=0.01 type=range value=' + settings['audio-volume'] + '>Audio<br>'
-        + '<input id=link-length maxlength=2 value=' + settings['link-length'] + '>Link Length<br>'
-        + '<input id=start-key maxlength=1 value=' + settings['start-key'] + '>Start<br>'
+      '<input id=audio-volume max=1 min=0 step=0.01 type=range>Audio<br>'
+        + '<input id=link-length maxlength=2>Link Length<br>'
+        + '<input id=start-key maxlength=1>Start<br>'
         + '<input id=reset-button onclick=reset() type=button value=Reset>';
+    update_settings();
 
     stop();
 };
