@@ -124,4 +124,5 @@ window.onload = function(e){
     update_settings();
 
     stop();
+    settings_toggle(false);
 };
