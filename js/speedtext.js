@@ -31,14 +31,14 @@ function generate(){
 
     // Generate a range of link-length that doesn't overwrite any HTML.
     do{
-        range = Math.floor(Math.random() * (text.length - settings['link-length']));
-    }while(text.substr(range, settings['link-length']).indexOf('<') !== -1
-      || text.substr(range, settings['link-length']).indexOf('>') != -1);
+        range = Math.floor(Math.random() * (text.length - settings_settings['link-length']));
+    }while(text.substr(range, settings_settings['link-length']).indexOf('<') !== -1
+      || text.substr(range, settings_settings['link-length']).indexOf('>') != -1);
 
     // Replace the text with the new target link in it.
     document.getElementById('text').innerHTML = text.substr(0, range)
-      + '<a onclick="clicked()">' + text.substr(range, settings['link-length']) + '</a>'
-      + text.substr(range + settings['link-length'], text.length - range);
+      + '<a onclick="clicked()">' + text.substr(range, settings_settings['link-length']) + '</a>'
+      + text.substr(range + settings_settings['link-length'], text.length - range);
 }
 
 function settings_toggle(state){
@@ -59,7 +59,7 @@ function settings_toggle(state){
 function start(){
     document.getElementById('start-button').onclick = stop;
 
-    save();
+    settings_save();
 
     time = 30;
 
@@ -79,7 +79,7 @@ function stop(){
     clear_links();
     document.getElementById('start-button').onclick = start;
     document.getElementById('start-button').value =
-      'Start [' + settings['start-key'] + ']';
+      'Start [' + settings_settings['start-key'] + ']';
 }
 
 var interval = 0;
@@ -92,7 +92,7 @@ window.onkeydown = function(e){
     if(key === 27){
         stop();
 
-    }else if(String.fromCharCode(key) === settings['start-key']){
+    }else if(String.fromCharCode(key) === settings_settings['start-key']){
         stop();
         start();
 
@@ -107,7 +107,7 @@ window.onkeydown = function(e){
 };
 
 window.onload = function(e){
-    init_settings(
+    settings_init(
       'SpeedText.htm-',
       {
         'audio-volume': 1,
@@ -120,8 +120,8 @@ window.onload = function(e){
       '<input id=audio-volume max=1 min=0 step=0.01 type=range>Audio<br>'
         + '<input id=link-length maxlength=2>Link Length<br>'
         + '<input id=start-key maxlength=1>Start<br>'
-        + '<input id=reset-button onclick=reset() type=button value=Reset>';
-    update_settings();
+        + '<input id=reset-button onclick=settings_reset() type=button value=Reset>';
+    settings_update();
 
     stop();
     settings_toggle(false);
