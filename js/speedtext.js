@@ -1,10 +1,10 @@
 'use strict';
 
 function clicked(){
-    audio_start(
-      'boop',
-      settings_settings['audio-volume']
-    );
+    audio_start({
+      'id': 'boop',
+      'volume-multiplier': settings_settings['audio-volume'],
+    });
 
     document.getElementById('score').innerHTML = parseInt(
       document.getElementById('score').innerHTML,
@@ -120,14 +120,16 @@ window.onload = function(e){
         'start-key': 'H',
       }
     );
-    audio_init(settings_settings['audio-volume']);
-    audio_create(
-      'boop',
-      {
+    audio_init({
+      'volume': settings_settings['audio-volume'],
+    });
+    audio_create({
+      'id': 'boop',
+      'properties': {
         'duration': .1,
         'volume': .1,
-      }
-    );
+      },
+    });
 
     document.getElementById('settings').innerHTML =
       '<input id=audio-volume max=1 min=0 step=0.01 type=range>Audio<br>'
