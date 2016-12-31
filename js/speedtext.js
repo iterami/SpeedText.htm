@@ -112,14 +112,14 @@ window.onkeydown = function(e){
 };
 
 window.onload = function(e){
-    settings_init(
-      'SpeedText.htm-',
-      {
+    settings_init({
+      'prefix': 'SpeedText.htm-',
+      'settings': {
         'audio-volume': 1,
         'link-length': 5,
         'start-key': 'H',
-      }
-    );
+      },
+    });
     audio_init({
       'volume': settings_settings['audio-volume'],
     });
