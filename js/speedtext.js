@@ -64,15 +64,15 @@ function settings_toggle(state){
 }
 
 function start(){
-    document.getElementById('start-button').onclick = stop;
-
     settings_save();
 
-    time = 30;
+    time = settings_settings['time-max'];
 
     document.getElementById('score').innerHTML = 0;
+    document.getElementById('start-button').onclick = stop;
     document.getElementById('start-button').value = 'End [ESC]';
     document.getElementById('time').innerHTML = time;
+    document.getElementById('time-max-span').innerHTML = time;
     generate();
 
     interval = window.setInterval(
@@ -120,6 +120,7 @@ window.onload = function(e){
         'audio-volume': 1,
         'link-length': 5,
         'start-key': 'H',
+        'time-max': 30,
       },
     });
     audio_init({
@@ -137,6 +138,7 @@ window.onload = function(e){
       '<input id=audio-volume max=1 min=0 step=0.01 type=range>Audio<br>'
         + '<input id=link-length maxlength=2>Link Length<br>'
         + '<input id=start-key maxlength=1>Start<br>'
+        + '<input id=time-max>Time<br>'
         + '<input id=reset-button onclick=settings_reset() type=button value=Reset>';
     settings_update();
 
