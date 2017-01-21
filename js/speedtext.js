@@ -92,27 +92,6 @@ function stop(){
 var interval = 0;
 var time = 0;
 
-window.onkeydown = function(e){
-    var key = e.keyCode || e.which;
-
-    // ESC: stop current game.
-    if(key === 27){
-        stop();
-
-    }else if(String.fromCharCode(key) === settings_settings['start-key']){
-        stop();
-        start();
-
-    // +: show settings.
-    }else if(key === 187){
-        settings_toggle(true);
-
-    // -: hide settings.
-    }else if(key === 189){
-        settings_toggle(false);
-    }
-};
-
 window.onload = function(e){
     settings_init({
       'prefix': 'SpeedText.htm-',
@@ -150,4 +129,25 @@ window.onload = function(e){
 
     stop();
     settings_toggle(false);
+
+    window.onkeydown = function(e){
+        var key = e.keyCode || e.which;
+
+        // ESC: stop current game.
+        if(key === 27){
+            stop();
+
+        }else if(String.fromCharCode(key) === settings_settings['start-key']){
+            stop();
+            start();
+
+        // +: show settings.
+        }else if(key === 187){
+            settings_toggle(true);
+
+        // -: hide settings.
+        }else if(key === 189){
+            settings_toggle(false);
+        }
+    };
 };
