@@ -36,7 +36,7 @@ function generate(){
 
     // Generate a range of link-length that doesn't overwrite any HTML.
     do{
-        range = random_integer({
+        range = core_random_integer({
           'max': text.length - storage_data['link-length'],
         });
     }while(text.substr(range, storage_data['link-length']).indexOf('<') !== -1
