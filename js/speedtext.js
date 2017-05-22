@@ -114,11 +114,11 @@ window.onload = function(e){
     });
 
     document.getElementById('settings').innerHTML =
-      '<input id=audio-volume max=1 min=0 step=0.01 type=range>Audio<br>'
-        + '<input id=link-length maxlength=2>Link Length<br>'
-        + '<input id=start-key maxlength=1>Start<br>'
-        + '<input id=time-max>Time<br>'
-        + '<input id=reset-button onclick=core_storage_reset() type=button value=Reset>';
+      '<tr><td colspan=2><input id=reset-button onclick=core_storage_reset() type=button value=Reset>'
+        + '<tr><td><input id=audio-volume max=1 min=0 step=0.01 type=range><td>Audio'
+        + '<tr><td><input id=link-length maxlength=2><td>Link Length'
+        + '<tr><td><input id=start-key maxlength=1><td>Start'
+        + '<tr><td><input id=time-max><td>Time';
     core_storage_update();
 
     document.getElementById('settings-button').onclick = function(){
