@@ -3,7 +3,7 @@
 function clicked(){
     audio_start({
       'id': 'boop',
-      'volume-multiplier': storage_data['audio-volume'],
+      'volume-multiplier': core_storage_data['audio-volume'],
     });
 
     document.getElementById('score').innerHTML = parseInt(
@@ -37,15 +37,15 @@ function generate(){
     // Generate a range of link-length that doesn't overwrite any HTML.
     do{
         range = core_random_integer({
-          'max': text.length - storage_data['link-length'],
+          'max': text.length - core_storage_data['link-length'],
         });
-    }while(text.substr(range, storage_data['link-length']).indexOf('<') !== -1
-      || text.substr(range, storage_data['link-length']).indexOf('>') != -1);
+    }while(text.substr(range, core_storage_data['link-length']).indexOf('<') !== -1
+      || text.substr(range, core_storage_data['link-length']).indexOf('>') != -1);
 
     // Replace the text with the new target link in it.
     document.getElementById('text').innerHTML = text.substr(0, range)
-      + '<a onclick="clicked()">' + text.substr(range, storage_data['link-length']) + '</a>'
-      + text.substr(range + storage_data['link-length'], text.length - range);
+      + '<a onclick="clicked()">' + text.substr(range, core_storage_data['link-length']) + '</a>'
+      + text.substr(range + core_storage_data['link-length'], text.length - range);
 }
 
 function settings_toggle(state){
@@ -64,9 +64,9 @@ function settings_toggle(state){
 }
 
 function start(){
-    storage_save();
+    core_storage_save();
 
-    time = storage_data['time-max'];
+    time = core_storage_data['time-max'];
 
     document.getElementById('score').innerHTML = 0;
     document.getElementById('start-button').onclick = stop;
@@ -86,14 +86,14 @@ function stop(){
     clear_links();
     document.getElementById('start-button').onclick = start;
     document.getElementById('start-button').value =
-      'Start [' + storage_data['start-key'] + ']';
+      'Start [' + core_storage_data['start-key'] + ']';
 }
 
 var interval = 0;
 var time = 0;
 
 window.onload = function(e){
-    storage_init({
+    core_storage_init({
       'data': {
         'audio-volume': 1,
         'link-length': 5,
@@ -103,7 +103,7 @@ window.onload = function(e){
       'prefix': 'SpeedText.htm-',
     });
     audio_init({
-      'volume': storage_data['audio-volume'],
+      'volume': core_storage_data['audio-volume'],
     });
     audio_create({
       'id': 'boop',
@@ -118,8 +118,8 @@ window.onload = function(e){
         + '<input id=link-length maxlength=2>Link Length<br>'
         + '<input id=start-key maxlength=1>Start<br>'
         + '<input id=time-max>Time<br>'
-        + '<input id=reset-button onclick=storage_reset() type=button value=Reset>';
-    storage_update();
+        + '<input id=reset-button onclick=core_storage_reset() type=button value=Reset>';
+    core_storage_update();
 
     document.getElementById('settings-button').onclick = function(){
         settings_toggle();
@@ -137,7 +137,7 @@ window.onload = function(e){
         if(key === 27){
             stop();
 
-        }else if(String.fromCharCode(key) === storage_data['start-key']){
+        }else if(String.fromCharCode(key) === core_storage_data['start-key']){
             stop();
             start();
 
