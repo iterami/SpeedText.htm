@@ -48,51 +48,7 @@ function generate(){
       + text.substr(range + core_storage_data['link-length'], text.length - range);
 }
 
-function settings_toggle(state){
-    state = state == void 0
-      ? document.getElementById('settings-button').value === '+'
-      : state;
-
-    if(state){
-        document.getElementById('settings').style.display = 'inline-block';
-        document.getElementById('settings-button').value = '-';
-
-    }else{
-        document.getElementById('settings').style.display = 'none';
-        document.getElementById('settings-button').value = '+';
-    }
-}
-
-function start(){
-    core_storage_save();
-
-    time = core_storage_data['time-max'];
-
-    document.getElementById('score').innerHTML = 0;
-    document.getElementById('start-button').onclick = stop;
-    document.getElementById('start-button').value = 'End [ESC]';
-    document.getElementById('time').innerHTML = time;
-    document.getElementById('time-max-span').innerHTML = time;
-    generate();
-
-    interval = window.setInterval(
-      decisecond,
-      100
-    );
-}
-
-function stop(){
-    window.clearInterval(interval);
-    clear_links();
-    document.getElementById('start-button').onclick = start;
-    document.getElementById('start-button').value =
-      'Start [' + core_storage_data['start-key'] + ']';
-}
-
-var interval = 0;
-var time = 0;
-
-window.onload = function(e){
+function repo_init(){
     core_storage_init({
       'data': {
         'audio-volume': 1,
@@ -150,4 +106,48 @@ window.onload = function(e){
             settings_toggle(false);
         }
     };
-};
+}
+
+function settings_toggle(state){
+    state = state == void 0
+      ? document.getElementById('settings-button').value === '+'
+      : state;
+
+    if(state){
+        document.getElementById('settings').style.display = 'inline-block';
+        document.getElementById('settings-button').value = '-';
+
+    }else{
+        document.getElementById('settings').style.display = 'none';
+        document.getElementById('settings-button').value = '+';
+    }
+}
+
+function start(){
+    core_storage_save();
+
+    time = core_storage_data['time-max'];
+
+    document.getElementById('score').innerHTML = 0;
+    document.getElementById('start-button').onclick = stop;
+    document.getElementById('start-button').value = 'End [ESC]';
+    document.getElementById('time').innerHTML = time;
+    document.getElementById('time-max-span').innerHTML = time;
+    generate();
+
+    interval = window.setInterval(
+      decisecond,
+      100
+    );
+}
+
+function stop(){
+    window.clearInterval(interval);
+    clear_links();
+    document.getElementById('start-button').onclick = start;
+    document.getElementById('start-button').value =
+      'Start [' + core_storage_data['start-key'] + ']';
+}
+
+var interval = 0;
+var time = 0;
