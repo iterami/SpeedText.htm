@@ -49,14 +49,14 @@ function generate(){
 }
 
 function repo_init(){
-    core_storage_init({
-      'data': {
+    core_repo_init({
+      'storage': {
         'audio-volume': 1,
         'link-length': 5,
         'start-key': 'H',
         'time-max': 30,
       },
-      'prefix': 'SpeedText.htm-',
+      'title': 'SpeedText.htm',
     });
     audio_init({
       'volume': core_storage_data['audio-volume'],
