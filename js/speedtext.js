@@ -50,6 +50,9 @@ function generate(){
 
 function repo_init(){
     core_repo_init({
+      'title': 'SpeedText.htm',
+    });
+    core_repo_init({
       'storage': {
         'audio-volume': 1,
         'link-length': 5,
