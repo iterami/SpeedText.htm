@@ -48,15 +48,33 @@ function generate(){
       + text.substr(range + core_storage_data['link-length'], text.length - range);
 }
 
+function repo_escape(){
+    stop();
+}
+
 function repo_init(){
     core_repo_init({
-      'title': 'SpeedText.htm',
-    });
-    core_repo_init({
+      'keybinds': {
+        72: {
+          'todo': function(){
+              stop();
+              start();
+          },
+        },
+        187: {
+          'todo': function(){
+              settings_toggle(true);
+          },
+        },
+        189: {
+          'todo': function(){
+              settings_toggle(false);
+          },
+        },
+      },
       'storage': {
         'audio-volume': 1,
         'link-length': 5,
-        'start-key': 'H',
         'time-max': 30,
       },
       'title': 'SpeedText.htm',
@@ -76,7 +94,6 @@ function repo_init(){
       '<tr><td colspan=2><input id=reset-button onclick=core_storage_reset() type=button value=Reset>'
         + '<tr><td><input id=audio-volume max=1 min=0 step=0.01 type=range><td>Audio'
         + '<tr><td><input id=link-length maxlength=2><td>Link Length'
-        + '<tr><td><input id=start-key maxlength=1><td>Start'
         + '<tr><td><input id=time-max><td>Time';
     core_storage_update();
 
@@ -88,27 +105,6 @@ function repo_init(){
 
     stop();
     settings_toggle(false);
-
-    window.onkeydown = function(e){
-        var key = e.keyCode || e.which;
-
-        // ESC: stop current game.
-        if(key === 27){
-            stop();
-
-        }else if(String.fromCharCode(key) === core_storage_data['start-key']){
-            stop();
-            start();
-
-        // +: show settings.
-        }else if(key === 187){
-            settings_toggle(true);
-
-        // -: hide settings.
-        }else if(key === 189){
-            settings_toggle(false);
-        }
-    };
 }
 
 function settings_toggle(state){
@@ -148,8 +144,7 @@ function stop(){
     window.clearInterval(interval);
     clear_links();
     document.getElementById('start-button').onclick = start;
-    document.getElementById('start-button').value =
-      'Start [' + core_storage_data['start-key'] + ']';
+    document.getElementById('start-button').value = 'Start [H]';
 }
 
 var interval = 0;
