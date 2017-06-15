@@ -1,9 +1,8 @@
 'use strict';
 
 function clicked(){
-    audio_start({
+    core_audio_start({
       'id': 'boop',
-      'volume-multiplier': core_storage_data['audio-volume'],
     });
 
     document.getElementById('score').innerHTML = parseInt(
@@ -69,14 +68,10 @@ function repo_init(){
       'storage-menu': '<input id=link-length maxlength=2>Link Length<br><input id=time-max>Time',
       'title': 'SpeedText.htm',
     });
-    audio_init({
-      'volume': core_storage_data['audio-volume'],
-    });
-    audio_create({
+    core_audio_create({
       'id': 'boop',
       'properties': {
         'duration': .1,
-        'volume': .1,
       },
     });
 
