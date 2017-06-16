@@ -65,7 +65,7 @@ function repo_init(){
         'link-length': 5,
         'time-max': 30,
       },
-      'storage-menu': '<input id=link-length maxlength=2>Link Length<br><input id=time-max>Time',
+      'storage-menu': '<table><tr><td><input id=link-length maxlength=2><td>Link Length<tr><td><input id=time-max><td>Time</table>',
       'title': 'SpeedText.htm',
     });
     core_audio_create({
