@@ -5,8 +5,9 @@ function clicked(){
       'id': 'boop',
     });
 
-    document.getElementById('score').innerHTML = parseInt(
-      document.getElementById('score').innerHTML,
+    var element = document.getElementById('score');
+    element.innerHTML = parseInt(
+      element.innerHTML,
       10
     ) + 1;
     generate();
@@ -83,8 +84,9 @@ function start(){
     time = core_storage_data['time-max'];
 
     document.getElementById('score').innerHTML = 0;
-    document.getElementById('start-button').onclick = stop;
-    document.getElementById('start-button').value = 'End [ESC]';
+    var element = document.getElementById('start-button');
+    element.onclick = stop;
+    element.value = 'End [ESC]';
     document.getElementById('time').innerHTML = time;
     document.getElementById('time-max-span').innerHTML = time;
     clear_links();
@@ -99,8 +101,10 @@ function start(){
 function stop(){
     window.clearInterval(interval);
     clear_links();
-    document.getElementById('start-button').onclick = start;
-    document.getElementById('start-button').value = 'Start [H]';
+
+    var element = document.getElementById('start-button');
+    element.onclick = start;
+    element.value = 'Start [H]';
 }
 
 var interval = 0;
