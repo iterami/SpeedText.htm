@@ -11,6 +11,11 @@ function repo_init(){
           'duration': .1,
         },
       },
+      'info-events': {
+        'start-button': {
+          'todo': start,
+        },
+      },
       'keybinds': {
         72: {
           'todo': function(){
@@ -27,8 +32,6 @@ function repo_init(){
       'storage-menu': '<textarea id=text></textarea><table><tr><td><input id=link-length maxlength=2><td>Link Length<tr><td><input id=time-max><td>Time</table>',
       'title': 'SpeedText.htm',
     });
-
-    document.getElementById('start-button').onclick = start;
 
     stop();
 }
