@@ -51,9 +51,13 @@ function start(){
     time = core_storage_data['time-max'];
 
     document.getElementById('score').innerHTML = 0;
-    var element = document.getElementById('start-button');
-    element.onclick = stop;
-    element.value = 'End [ESC]';
+    core_html_modify({
+      'id': 'start-button',
+      'properties': {
+        'onclick': stop,
+        'value': 'End [ESC]',
+      },
+    });
     document.getElementById('time').innerHTML = time;
     document.getElementById('time-max-span').innerHTML = time;
     clear_links();
@@ -69,9 +73,13 @@ function stop(){
     window.clearInterval(interval);
     clear_links();
 
-    var element = document.getElementById('start-button');
-    element.onclick = start;
-    element.value = 'Start [H]';
+    core_html_modify({
+      'id': 'start-button',
+      'properties': {
+        'onclick': start,
+        'value': 'Start [H]',
+      },
+    });
 }
 
 var interval = 0;
