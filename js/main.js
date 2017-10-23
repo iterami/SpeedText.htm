@@ -11,6 +11,10 @@ function repo_init(){
           'duration': .1,
         },
       },
+      'globals': {
+        'interval': 0,
+        'time': 0,
+      },
       'info-events': {
         'start-button': {
           'todo': start,
