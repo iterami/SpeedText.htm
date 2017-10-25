@@ -11,14 +11,14 @@ function repo_init(){
           'duration': .1,
         },
       },
+      'events': {
+        'start-button': {
+          'onclick': start,
+        },
+      },
       'globals': {
         'interval': 0,
         'time': 0,
-      },
-      'info-events': {
-        'start-button': {
-          'todo': start,
-        },
       },
       'keybinds': {
         72: {
