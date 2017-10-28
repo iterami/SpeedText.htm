@@ -1,6 +1,10 @@
 'use strict';
 
 function clicked(){
+    if(core_menu_open){
+        return;
+    }
+
     core_audio_start({
       'id': 'boop',
     });
@@ -46,38 +50,26 @@ function generate(){
 }
 
 function start(){
-    core_storage_save();
+    if(core_menu_open){
+        core_escape();
+    }
 
     time = core_storage_data['time-max'];
 
     document.getElementById('score').innerHTML = 0;
-    core_html_modify({
-      'id': 'start-button',
-      'properties': {
-        'onclick': stop,
-        'value': 'End [ESC]',
-      },
-    });
     document.getElementById('time').innerHTML = time;
     document.getElementById('time-max-span').innerHTML = time;
     clear_links();
     generate();
 
-    interval = window.setInterval(
-      decisecond,
-      100
-    );
+    core_interval_modify({
+      'id': 'interval',
+      'interval': 100,
+      'todo': decisecond,
+    });
 }
 
 function stop(){
-    window.clearInterval(interval);
+    core_interval_pause_all();
     clear_links();
-
-    core_html_modify({
-      'id': 'start-button',
-      'properties': {
-        'onclick': start,
-        'value': 'Start [H]',
-      },
-    });
 }

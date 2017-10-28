@@ -1,9 +1,5 @@
 'use strict';
 
-function repo_escape(){
-    stop();
-}
-
 function repo_init(){
     core_repo_init({
       'audios': {
@@ -20,6 +16,7 @@ function repo_init(){
         'interval': 0,
         'time': 0,
       },
+      'info': '<input id=start-button type=button value=Restart>',
       'keybinds': {
         72: {
           'todo': function(){
@@ -37,5 +34,5 @@ function repo_init(){
       'title': 'SpeedText.htm',
     });
 
-    stop();
+    start();
 }
