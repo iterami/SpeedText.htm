@@ -13,7 +13,6 @@ function repo_init(){
         },
       },
       'globals': {
-        'interval': 0,
         'time': 0,
       },
       'info': '<input id=start-button type=button value=Restart>',
