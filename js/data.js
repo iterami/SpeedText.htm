@@ -50,10 +50,6 @@ function generate(){
 }
 
 function start(){
-    if(core_menu_open){
-        core_escape();
-    }
-
     time = core_storage_data['time-max'];
 
     document.getElementById('score').innerHTML = 0;
