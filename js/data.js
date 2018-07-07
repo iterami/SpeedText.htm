@@ -10,7 +10,7 @@ function clicked(){
     });
 
     var element = document.getElementById('score');
-    element.innerHTML = parseInt(
+    element.innerHTML = Number.parseInt(
       element.innerHTML,
       10
     ) + 1;
