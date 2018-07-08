@@ -9,7 +9,7 @@ function clicked(){
       'id': 'boop',
     });
 
-    var element = document.getElementById('score');
+    let element = document.getElementById('score');
     element.innerHTML = Number.parseInt(
       element.innerHTML,
       10
@@ -34,7 +34,7 @@ function decisecond(){
 
 function generate(){
     clear_links();
-    var range = 0;
+    let range = 0;
     // Generate a range of link-length that doesn't overwrite any HTML.
     do{
         range = core_random_integer({
