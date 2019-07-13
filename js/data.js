@@ -5,7 +5,7 @@ function clicked(){
         return;
     }
 
-    core_audio_start({
+    audio_start({
       'id': 'boop',
     });
 

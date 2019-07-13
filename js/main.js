@@ -2,11 +2,6 @@
 
 function repo_init(){
     core_repo_init({
-      'audios': {
-        'boop': {
-          'duration': .1,
-        },
-      },
       'events': {
         'start-button': {
           'onclick': function(){
@@ -37,5 +32,12 @@ function repo_init(){
         + '<table><tr><td><input id=link-length maxlength=2><td>Link Length'
         + '<tr><td><input id=time-max><td>Time</table>',
       'title': 'SpeedText.htm',
+    });
+    audio_create({
+      'audios': {
+        'boop': {
+          'duration': .1,
+        },
+      },
     });
 }
