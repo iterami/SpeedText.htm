@@ -56,7 +56,7 @@ function start(){
     time = core_storage_data['time-max'];
 
     document.getElementById('score').innerHTML = 0;
-    document.getElementById('time').innerHTML = time;
+    core_elements['time'].innerHTML = time;
     document.getElementById('time-max-span').innerHTML = time;
     clear_links();
     generate();
