@@ -10,8 +10,8 @@ function clicked(){
     });
 
     let element = document.getElementById('score');
-    element.innerHTML = Number.parseInt(
-      element.innerHTML,
+    element.textContent = Number.parseInt(
+      element.textContent,
       10
     ) + 1;
     generate();
@@ -28,7 +28,7 @@ function decisecond(){
       'number': time - .1,
     });
 
-    core_elements['time'].innerHTML = core_number_format({
+    core_elements['time'].textContent = core_number_format({
       'decimals-min': 1,
       'number': time,
     });;
@@ -58,9 +58,9 @@ function generate(){
 function start(){
     time = core_storage_data['time-max'];
 
-    document.getElementById('score').innerHTML = 0;
-    core_elements['time'].innerHTML = time;
-    document.getElementById('time-max-span').innerHTML = time;
+    document.getElementById('score').textContent = 0;
+    core_elements['time'].textContent = time;
+    document.getElementById('time-max-span').textContent = time;
     clear_links();
     generate();
 
