@@ -9,7 +9,7 @@ function clicked(){
       'id': 'boop',
     });
 
-    let element = document.getElementById('score');
+    const element = document.getElementById('score');
     element.textContent = Number.parseInt(
       element.textContent,
       10
