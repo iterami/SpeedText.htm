@@ -18,7 +18,6 @@ function clicked(){
 }
 
 function clear_links(){
-    // Remove all target links from text.
     document.getElementById('text-div').innerHTML = core_storage_data['text'];
 }
 
@@ -41,7 +40,6 @@ function decisecond(){
 function generate(){
     clear_links();
     let range = 0;
-    // Generate a range of link-length that doesn't overwrite any HTML.
     do{
         range = core_random_integer({
           'max': core_storage_data['text'].length - core_storage_data['link-length'],
@@ -49,7 +47,6 @@ function generate(){
     }while(core_storage_data['text'].substr(range, core_storage_data['link-length']).indexOf('<') !== -1
       || core_storage_data['text'].substr(range, core_storage_data['link-length']).indexOf('>') !== -1);
 
-    // Replace the text with the new target link in it.
     document.getElementById('text-div').innerHTML = core_storage_data['text'].substr(0, range)
       + '<a onclick="clicked()">' + core_storage_data['text'].substr(range, core_storage_data['link-length']) + '</a>'
       + core_storage_data['text'].substr(range + core_storage_data['link-length'], core_storage_data['text'].length - range);

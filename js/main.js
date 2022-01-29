@@ -32,8 +32,8 @@ function repo_init(){
         'time-max': 30,
       },
       'storage-menu': '<textarea id=text></textarea>'
-        + '<table><tr><td><input id=link-length maxlength=2><td>Link Length'
-        + '<tr><td><input id=time-max><td>Time</table>',
+        + '<table><tr><td><input id=link-length min=1 type=number><td>Link Length'
+        + '<tr><td><input id=time-max type=number><td>Time</table>',
       'title': 'SpeedText.htm',
     });
     audio_create({
