@@ -44,12 +44,12 @@ function generate(){
         range = core_random_integer({
           'max': core_storage_data['text'].length - core_storage_data['link-length'],
         });
-    }while(core_storage_data['text'].substr(range, core_storage_data['link-length']).indexOf('<') !== -1
-      || core_storage_data['text'].substr(range, core_storage_data['link-length']).indexOf('>') !== -1);
+    }while(core_storage_data['text'].substring(range, range + core_storage_data['link-length']).indexOf('<') !== -1
+      || core_storage_data['text'].substring(range, range + core_storage_data['link-length']).indexOf('>') !== -1);
 
-    document.getElementById('text-div').innerHTML = core_storage_data['text'].substr(0, range)
-      + '<a onclick="clicked()">' + core_storage_data['text'].substr(range, core_storage_data['link-length']) + '</a>'
-      + core_storage_data['text'].substr(range + core_storage_data['link-length'], core_storage_data['text'].length - range);
+    document.getElementById('text-div').innerHTML = core_storage_data['text'].substring(0, range)
+      + '<a onclick="clicked()">' + core_storage_data['text'].substring(range, range + core_storage_data['link-length']) + '</a>'
+      + core_storage_data['text'].substring(range + core_storage_data['link-length']);
 }
 
 function repo_escape(){
