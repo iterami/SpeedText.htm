@@ -69,7 +69,7 @@ function repo_init(){
       'globals': {
         'time': 0,
       },
-      'info': '<input id=start-button type=button value=Restart>',
+      'info': '<button id=start-button type=button>Restart</button>',
       'menu': true,
       'reset': function(){
           stop();
