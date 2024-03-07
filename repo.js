@@ -5,9 +5,7 @@ function clicked(){
         return;
     }
 
-    audio_start({
-      'id': 'boop',
-    });
+    audio_start('boop');
 
     const element = document.getElementById('score');
     element.textContent = Number.parseInt(
@@ -88,13 +86,6 @@ function repo_init(){
         + '<tr><td><input class=mini id=time-max step=any type=number><td>Time</table>',
       'title': 'SpeedText.htm',
       'ui': 'Score: <span id=score></span><br>Time: <span id=time></span> / <span id=time-max-span>30</span><hr><div id=text-div></div>',
-    });
-    audio_create({
-      'audios': {
-        'boop': {
-          'duration': .1,
-        },
-      },
     });
     core_html_store([
       'time',
