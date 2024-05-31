@@ -87,9 +87,7 @@ function repo_init(){
       'title': 'SpeedText.htm',
       'ui': 'Score: <span id=score></span><br>Time: <span id=time></span> / <span id=time-max-span>30</span><hr><div id=text-div></div>',
     });
-    core_html_store([
-      'time',
-    ]);
+    core_elements['time'] = document.getElementById('time');
 }
 
 function start(){
