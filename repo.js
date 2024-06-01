@@ -7,11 +7,14 @@ function clicked(){
 
     audio_start('boop');
 
-    const element = document.getElementById('score');
-    element.textContent = Number.parseInt(
-      element.textContent,
-      10
-    ) + 1;
+    core_ui_update({
+      'ids': {
+        'score': Number.parseInt(
+          core_elements['score'].textContent,
+          10
+        ) + 1,
+      },
+    });
     generate();
 }
 
@@ -25,10 +28,14 @@ function decisecond(){
       'number': time - .1,
     });
 
-    core_elements['time'].textContent = core_number_format({
-      'decimals-min': 1,
-      'number': time,
-    });;
+    core_ui_update({
+      'ids': {
+        'time': core_number_format({
+          'decimals-min': 1,
+          'number': time,
+        }),
+      },
+    });
 
     if(time <= 0){
         stop();
@@ -87,15 +94,18 @@ function repo_init(){
       'title': 'SpeedText.htm',
       'ui': 'Score: <span id=score></span><br>Time: <span id=time></span> / <span id=time-max-span>30</span><hr><div id=text-div></div>',
     });
-    core_elements['time'] = document.getElementById('time');
 }
 
 function start(){
     time = core_storage_data['time-max'];
 
-    document.getElementById('score').textContent = 0;
-    core_elements['time'].textContent = time;
-    document.getElementById('time-max-span').textContent = time;
+    core_ui_update({
+      'ids': {
+        'score': 0,
+        'time': 0,
+        'time-max-span': time,
+      },
+    });
     clear_links();
     generate();
 
