@@ -19,7 +19,7 @@ function clicked(){
 }
 
 function clear_links(){
-    document.getElementById('text-div').innerHTML = core_storage_data['text'];
+    core_elements['text-div'].innerHTML = core_storage_data['text'];
 }
 
 function decisecond(){
@@ -52,7 +52,7 @@ function generate(){
     }while(core_storage_data['text'].substring(range, range + core_storage_data['link-length']).indexOf('<') !== -1
       || core_storage_data['text'].substring(range, range + core_storage_data['link-length']).indexOf('>') !== -1);
 
-    document.getElementById('text-div').innerHTML = core_storage_data['text'].substring(0, range)
+    core_elements['text-div'].innerHTML = core_storage_data['text'].substring(0, range)
       + '<a onclick="clicked()">' + core_storage_data['text'].substring(range, range + core_storage_data['link-length']) + '</a>'
       + core_storage_data['text'].substring(range + core_storage_data['link-length']);
 }
@@ -93,6 +93,9 @@ function repo_init(){
         + '<tr><td><input class=mini id=time-max step=any type=number><td>Time</table>',
       'title': 'SpeedText.htm',
       'ui': 'Score: <span id=score></span><br>Time: <span id=time></span> / <span id=time-max-span>30</span><hr><div id=text-div></div>',
+      'ui-elements': [
+        'text-div',
+      ],
     });
 }
 
