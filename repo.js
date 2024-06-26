@@ -89,7 +89,7 @@ function repo_init(){
         'time-max': 30,
       },
       'storage-menu': '<textarea id=text></textarea>'
-        + '<table><tr><td><input class=mini id=link-length min=1 step=any type=number><td>Link Length'
+        + '<table><tr><td><input class=mini id=link-length min=1 step=1 type=number><td>Link Length'
         + '<tr><td><input class=mini id=time-max step=any type=number><td>Time</table>',
       'title': 'SpeedText.htm',
       'ui': 'Score: <span id=score></span><br>Time: <span id=time></span> / <span id=time-max-span>30</span><hr><div id=text-div></div>',
