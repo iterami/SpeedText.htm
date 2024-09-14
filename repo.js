@@ -44,16 +44,18 @@ function decisecond(){
 
 function generate(){
     clear_links();
+
+    let link = '';
     let range = 0;
     do{
         range = core_random_integer({
           'max': core_storage_data['text'].length - core_storage_data['link-length'],
         });
-    }while(core_storage_data['text'].substring(range, range + core_storage_data['link-length']).indexOf('<') !== -1
-      || core_storage_data['text'].substring(range, range + core_storage_data['link-length']).indexOf('>') !== -1);
+        link = core_storage_data['text'].substring(range, range + core_storage_data['link-length']);
+    }while(~link.indexOf('<') || ~link.indexOf('>'));
 
     core_elements['text-div'].innerHTML = core_storage_data['text'].substring(0, range)
-      + '<a onclick="clicked()">' + core_storage_data['text'].substring(range, range + core_storage_data['link-length']) + '</a>'
+      + '<a onclick="clicked()">' + link + '</a>'
       + core_storage_data['text'].substring(range + core_storage_data['link-length']);
 }
 
