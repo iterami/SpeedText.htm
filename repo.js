@@ -6,13 +6,9 @@ function clicked(){
     }
 
     audio_start('boop');
-
     core_ui_update({
       'ids': {
-        'score': Number.parseInt(
-          core_elements['score'].textContent,
-          10
-        ) + 1,
+        'score': ++score,
       },
     });
     generate();
@@ -74,6 +70,7 @@ function repo_init(){
         },
       },
       'globals': {
+        'score': 0,
         'time': 0,
       },
       'info': '<button id=start-button type=button>Restart</button>',
@@ -95,6 +92,10 @@ function repo_init(){
 }
 
 function reset(){
+    if(score > 0
+      && !globalThis.confirm('Start new game?')){
+        return;
+    }
     stop();
     if(core_menu_open){
         core_escape();
@@ -103,6 +104,7 @@ function reset(){
 }
 
 function start(){
+    score = 0;
     time = core_storage_data['time-max'];
 
     core_ui_update({
