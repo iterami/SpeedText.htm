@@ -44,9 +44,7 @@ function generate(){
     let link = '';
     let range = 0;
     do{
-        range = core_random_integer({
-          'max': core_storage_data['text'].length - core_storage_data['link-length'],
-        });
+        range = core_random_integer(core_storage_data['text'].length - core_storage_data['link-length']);
         link = core_storage_data['text'].substring(range, range + core_storage_data['link-length']);
     }while(~link.indexOf('<') || ~link.indexOf('>'));
 
