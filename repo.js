@@ -15,7 +15,7 @@ function clicked(){
 }
 
 function clear_links(){
-    core_elements['text-div'].innerHTML = core_storage_data['text'];
+    core_elements.text_div.innerHTML = core_storage_data.text;
 }
 
 function decisecond(){
@@ -44,17 +44,17 @@ function generate(){
     let link = '';
     let range = 0;
     do{
-        range = core_random_integer(core_storage_data['text'].length - core_storage_data['link-length']);
-        link = core_storage_data['text'].substring(range, range + core_storage_data['link-length']);
+        range = core_random_integer(core_storage_data.text.length - core_storage_data.link_length);
+        link = core_storage_data.text.substring(range, range + core_storage_data.link_length);
     }while(~link.indexOf('<') || ~link.indexOf('>'));
 
-    core_elements['text-div'].innerHTML = core_storage_data['text'].substring(0, range)
+    core_elements.text_div.innerHTML = core_storage_data.text.substring(0, range)
       + '<a onclick="clicked()">' + link + '</a>'
-      + core_storage_data['text'].substring(range + core_storage_data['link-length']);
+      + core_storage_data.text.substring(range + core_storage_data.link_length);
 }
 
 function repo_escape(){
-    if(!core_intervals['interval']
+    if(!core_intervals.interval
       && !core_menu_open){
         reset();
     }
@@ -74,17 +74,17 @@ function repo_init(){
       'info': '<button id=start-button type=button>Restart</button>',
       'menu': true,
       'storage': {
-        'link-length': 5,
+        'link_length': 5,
         'text': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nibh ligula, dictum ut pulvinar sed, fringilla non lectus. Nunc fermentum aliquam condimentum. Aenean iaculis varius massa, vel rutrum nunc dictum eget. Sed sed ante at diam gravida luctus. Mauris tellus sapien, fringilla convallis mollis nec, tempor et velit. Morbi est odio, aliquet non interdum rutrum, facilisis egestas felis. Curabitur quis nisl et lacus congue ultricies. Sed enim justo, varius condimentum egestas quis, sodales condimentum orci. Praesent porttitor consectetur leo, ac consequat magna vulputate et. Donec non sem sem.<br><br>Integer quis enim at odio facilisis rhoncus. Nunc id ipsum eu massa eleifend placerat. Duis luctus lacus vel urna consequat scelerisque. Maecenas diam risus, interdum sed gravida in, posuere a ipsum. Nulla in nunc vitae velit tincidunt viverra vitae nec sem. Aliquam quis tellus magna. Donec nisl diam, ornare vehicula mattis nec, hendrerit sed ipsum.<br><br>Etiam iaculis vehicula lectus sed fringilla. In ut mauris augue, at facilisis tellus. Maecenas sed eros vitae turpis adipiscing dapibus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi vitae sodales odio. In sit amet magna sit amet erat sodales congue non sit amet justo. Suspendisse lobortis, neque in cursus tincidunt, neque magna sagittis massa, eu adipiscing magna elit et tellus. Nullam tincidunt leo in sem pretium mollis. Nam ac consequat risus.<br><br>Donec a porttitor orci. Fusce vestibulum massa velit, at ullamcorper tortor. Donec iaculis, quam non sodales pellentesque, enim mi venenatis ipsum, semper auctor nunc massa et ipsum. Praesent eget nisl lectus, non luctus felis. Aenean euismod lacinia mauris, at lacinia ante cursus id. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sodales, lorem ultricies molestie cursus, sapien erat congue quam, et vehicula eros massa ac libero. Nunc sit amet magna non turpis facilisis aliquet id sed risus. Mauris quis tellus nibh.<br><br>Nulla facilisi. Curabitur scelerisque, lectus ac sodales sollicitudin, justo massa convallis quam, eget tristique sapien eros eget urna. Fusce et neque lorem. Sed enim est, dapibus quis fermentum ac, mollis eget ligula. Aliquam erat volutpat. Aliquam odio erat, accumsan in sollicitudin ac, elementum nec augue. Sed vel tortor sit amet sapien elementum varius. Morbi sollicitudin mauris vitae augue suscipit hendrerit. Morbi nec elementum massa. Praesent condimentum dignissim nibh, eu scelerisque leo sollicitudin rutrum. Cras sit amet nibh eu leo scelerisque laoreet. Aliquam eu mauris at sapien placerat imperdiet vel eget turpis. Etiam posuere sem et justo ultrices suscipit. Vestibulum nibh dolor, lobortis sed eleifend sed, suscipit sit amet diam.',
-        'time-max': 30,
+        'time_max': 30,
       },
       'storage-menu': '<textarea id=text></textarea>'
-        + '<table><tr><td><input class=mini id=link-length min=1 step=1 type=number><td>Link Length'
-        + '<tr><td><input class=mini id=time-max step=any type=number><td>Time</table>',
+        + '<table><tr><td><input class=mini id=link_length min=1 step=1 type=number><td>Link Length'
+        + '<tr><td><input class=mini id=time_max step=any type=number><td>Time</table>',
       'title': 'SpeedText.htm',
-      'ui': 'Score: <span id=score></span> | Time: <span id=time></span> / <span id=time-max-span>30</span><br><br><div id=text-div></div>',
+      'ui': 'Score: <span id=score></span> | Time: <span id=time></span> / <span id=time_max_span>30</span><br><br><div id=text_div></div>',
       'ui-elements': [
-        'text-div',
+        'text_div',
       ],
     });
 }
@@ -103,13 +103,13 @@ function reset(){
 
 function start(){
     score = 0;
-    time = core_storage_data['time-max'];
+    time = core_storage_data.time_max;
 
     core_ui_update({
       'ids': {
         'score': 0,
         'time': 0,
-        'time-max-span': time,
+        'time_max_span': time,
       },
     });
     clear_links();
