@@ -83,7 +83,7 @@ function repo_init(){
         + '<tr><td><input class=mini id=time_max step=any type=number><td>Time</table>',
       'title': 'SpeedText.htm',
       'ui': 'Score: <span id=score></span> | Time: <span id=time></span> / <span id=time_max_span>30</span><br><br><div id=text_div></div>',
-      'ui-elements': [
+      'ui_elements': [
         'text_div',
       ],
     });
