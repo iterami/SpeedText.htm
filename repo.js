@@ -19,19 +19,21 @@ function clear_links(){
 }
 
 function decisecond(){
-    time = core_round({
-      'decimals': 1,
-      'number': time - .1,
-    });
+    if(time > 0){
+        time = core_round({
+          'decimals': 1,
+          'number': time - .1,
+        });
 
-    core_ui_update({
-      'ids': {
-        'time': core_number_format({
-          'decimals_min': 1,
-          'number': time,
-        }),
-      },
-    });
+        core_ui_update({
+          'ids': {
+            'time': core_number_format({
+              'decimals_min': 1,
+              'number': time,
+            }),
+          },
+        });
+    }
 
     if(time <= 0){
         stop();
