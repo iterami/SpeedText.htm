@@ -73,7 +73,7 @@ function repo_init(){
         },
       },
       'events': {
-        'start-button': {
+        'restart': {
           'onclick': reset,
         },
       },
@@ -81,7 +81,7 @@ function repo_init(){
         'score': 0,
         'time': 0,
       },
-      'info': '<button id=start-button type=button>Restart</button>',
+      'info': '<button id=restart type=button>Restart</button>',
       'menu': true,
       'storage': {
         'link_length': 5,
