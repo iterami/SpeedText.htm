@@ -58,7 +58,7 @@ function generate(){
 function repo_escape(){
     if(!core_intervals.interval
       && !core_menu_open){
-        reset();
+        start();
     }
 }
 
@@ -74,7 +74,7 @@ function repo_init(){
       },
       'events': {
         'start': {
-          'onclick': reset,
+          'onclick': start,
         },
       },
       'globals': {
@@ -100,21 +100,8 @@ function repo_init(){
 }
 
 function reset(){
-    if(score !== 0
-      && !globalThis.confirm('Start new game?')){
-        return;
-    }
-    stop();
-    if(core_menu_open){
-        core_escape();
-    }
-    start();
-}
-
-function start(){
     score = 0;
     time = core_storage_data.time_max;
-
     core_ui_update({
       'ids': {
         'score': 0,
@@ -122,8 +109,20 @@ function start(){
         'time_max_span': time,
       },
     });
-    clear_links();
+
     generate();
+}
+
+function start(){
+    if(score !== 0
+      && !globalThis.confirm('Start new game?')){
+        return;
+    }
+    stop();
+    reset();
+    if(core_menu_open){
+        core_escape();
+    }
 
     core_interval_modify({
       'id': 'interval',
