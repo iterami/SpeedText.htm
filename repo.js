@@ -118,7 +118,6 @@ function start(){
       && !globalThis.confirm('Start new game?')){
         return;
     }
-    stop();
     reset();
     if(core_menu_open){
         core_escape();
@@ -132,6 +131,6 @@ function start(){
 }
 
 function stop(){
-    core_interval_pause_all();
+    core_interval_lock('interval');
     clear_links();
 }
