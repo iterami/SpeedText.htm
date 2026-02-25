@@ -43,16 +43,12 @@ function decisecond(){
 function generate(){
     clear_links();
 
-    let link = '';
-    let range = 0;
-    do{
-        range = core_random_integer(core_storage_data.text.length - core_storage_data.link_length);
-        link = core_storage_data.text.substring(range, range + core_storage_data.link_length);
-    }while(~link.indexOf('<') || ~link.indexOf('>'));
+    const index = core_random_integer(core_storage_data.text.length - core_storage_data.link_length);
+    const link = core_storage_data.text.substring(index, index + core_storage_data.link_length);
 
-    core_elements.text_div.innerHTML = core_storage_data.text.substring(0, range)
+    core_elements.text_div.innerHTML = core_storage_data.text.substring(0, index)
       + '<a onclick="clicked()">' + link + '</a>'
-      + core_storage_data.text.substring(range + core_storage_data.link_length);
+      + core_storage_data.text.substring(index + core_storage_data.link_length);
 }
 
 function repo_escape(){
