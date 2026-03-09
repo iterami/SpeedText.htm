@@ -116,7 +116,7 @@ function start(){
     }
     reset();
     if(core_menu_open){
-        core_escape();
+        core_escape(false);
     }
 
     core_interval_modify({
