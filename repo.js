@@ -90,7 +90,7 @@ function repo_init(){
         + '<table><tr><td><input class=mini id=link_length min=1 step=1 type=number><td>Link Length'
         + '<tr><td><input class=mini id=time_max step=any type=number><td>Time</table>',
       'title': 'SpeedText.htm',
-      'ui': 'Score: <span id=score></span> | Time: <span id=time></span> / <span id=time_max_span>30</span><br><br><div id=text_div></div>',
+      'ui': ' <span id=score></span> |  <span id=time></span>/<span id=time_max_span></span><div id=text_div></div>',
       'ui_elements': [
         'text_div',
       ],
