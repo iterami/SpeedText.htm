@@ -62,13 +62,11 @@ function repo_escape(){
 
 function repo_init(){
     core_repo_init({
-      'beforeunload': {
-        'todo': function(event){
-            if(score !== 0){
-                core_escape(true);
-                event.preventDefault();
-            }
-        },
+      'beforeunload': function(event){
+          if(score !== 0){
+              core_escape(true);
+              event.preventDefault();
+          }
       },
       'events': {
         'start': {
@@ -90,10 +88,8 @@ function repo_init(){
         + '<table><tr><td><input class=mini id=link_length min=1 step=1 type=number><td>Link Length'
         + '<tr><td><input class=mini id=time_max step=any type=number><td>Time</table>',
       'title': 'SpeedText.htm',
-      'ui': ' <span id=score></span> |  <span id=time></span>/<span id=time_max_span></span><div id=text_div></div>',
-      'ui_elements': [
-        'text_div',
-      ],
+      'ui': ' <span id=score></span> | <span id=time></span>/<span id=time_max_span></span><div id=text_div></div>',
+      'ui_elements': ['text_div'],
     });
 }
 
